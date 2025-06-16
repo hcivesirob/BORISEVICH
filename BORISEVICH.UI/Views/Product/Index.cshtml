@@ -1,0 +1,69 @@
+﻿@using BORISEVICH.Domain.Models
+@model ProductListModel<Book>
+@{
+	ViewData["Title"] = "Index";
+	var request = ViewContext.HttpContext.Request;
+	var returnUrl = request.Path +
+	request.QueryString.ToUriComponent();
+	var categories = ViewData["categories"] as IEnumerable<Category>;
+
+	string? category = request.RouteValues["category"]?.ToString();
+	int prev = Model.CurrentPage == 1
+	? 1
+	: Model.CurrentPage - 1;
+	int next = Model.CurrentPage == Model.TotalPages
+	? Model.TotalPages
+	: Model.CurrentPage + 1;
+}
+
+<h2 class="m-3">Популярные книги:</h2>
+<div class="row">
+	<!-- выбор категории -->
+	<div class="col-2 border-2">
+		<ul class="nav ">
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle"
+					data-bs-toggle="dropdown"
+					href="#"
+					role="button"
+					aria-expanded="false">
+					@ViewData["currentCategory"]
+				</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a class="dropdown-item"
+							asp-controller="product"
+							asp-route-category=@null>Все</a>
+					</li>
+						@foreach (var item in categories)
+						{
+							<li>
+								<a class="dropdown-item"
+									asp-controller="product"
+									asp-route-category="@item.NormalizedName">
+									@item.Name
+								</a>
+							</li>
+						}
+				</ul>
+			</li>
+		</ul>
+</div>
+	@if (Model != null)
+	{
+		<div class="card-group">
+			@foreach (var item in Model.Items)
+			{
+				<partial name="_ProductItemPartial" model="@item" />
+			}
+		</div>
+	}
+
+	<pager page-current="@Model.CurrentPage"
+		   page-total="@Model.TotalPages"
+		   action="Index"
+		   controller="Product"
+		   category="@category">
+	   </pager>
+
+	<h2 class="text-warning">@ViewData["Error"]</h2>

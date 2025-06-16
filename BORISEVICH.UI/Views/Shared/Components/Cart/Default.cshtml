@@ -1,0 +1,6 @@
+﻿@using BORISEVICH.Domain.Models
+@model Cart
+<a asp-action="Index" asp-controller="Cart" class="navbar-text ms-auto">
+	Книг на @Model.TotalPage страниц <i class="fa-solid fa-cart-shopping"></i>
+	(@Model.Count)
+</a>

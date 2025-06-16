@@ -1,0 +1,26 @@
+﻿@page "/products"
+@rendermode InteractiveServer
+@using BORISEVICH.Blazor.Services
+@using BORISEVICH.Domain.Entities
+@using BORISEVICH.Domain.Models
+
+<CascadingValue Value="ProductService">
+	<DishesList BookSelected="ShowDetails" />
+	<Pager />
+</CascadingValue>
+<BookDetails Book="SelectedBook" />
+
+@code {
+	[Inject] IProductService<Book> ProductService { get; set; }
+	[Parameter]
+	public Book SelectedBook { get; set; }
+
+	protected override async Task OnInitializedAsync()
+	{
+		await ProductService.GetProducts();
+	}
+	void ShowDetails(int id)
+	{
+		SelectedBook = ProductService.Products.First(b => b.Id == id);
+	}
+}
