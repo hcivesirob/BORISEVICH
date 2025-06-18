@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BORISEVICH.API", "BORISEVIC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BORISEVICH.Blazor", "BORISEVICH.Blazor\BORISEVICH.Blazor.csproj", "{E673A9CF-DD97-4BFA-9A38-702F3884D233}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BORISEVICH.Tests", "BORISEVICH.Tests\BORISEVICH.Tests.csproj", "{755FC2B3-434A-43D2-A687-CEBC30D72045}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{E673A9CF-DD97-4BFA-9A38-702F3884D233}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E673A9CF-DD97-4BFA-9A38-702F3884D233}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E673A9CF-DD97-4BFA-9A38-702F3884D233}.Release|Any CPU.Build.0 = Release|Any CPU
+		{755FC2B3-434A-43D2-A687-CEBC30D72045}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{755FC2B3-434A-43D2-A687-CEBC30D72045}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{755FC2B3-434A-43D2-A687-CEBC30D72045}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{755FC2B3-434A-43D2-A687-CEBC30D72045}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

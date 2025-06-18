@@ -29,14 +29,14 @@
 	[CascadingParameter]
 	public IProductService<Book> ProductService { get; set; }
 	[Parameter]
-	public EventCallback<int> DishSelected { get; set; }
+	public EventCallback<int> BookSelected { get; set; }
 	protected override async Task OnInitializedAsync()
 	{
 		ProductService.ListChanged += StateHasChanged;
 	}
 	public async void OnBookSelected(int id)
 	{
-		await DishSelected.InvokeAsync(id);
+		await BookSelected.InvokeAsync(id);
 	}
 	public void Dispose()
 	{

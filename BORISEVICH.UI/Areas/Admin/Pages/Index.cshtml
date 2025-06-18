@@ -34,7 +34,8 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Book) {
+@foreach (var item in Model.Book) 
+{
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -63,7 +64,7 @@
                 </a>
             </td>
         </tr>
-}
+}       
     </tbody>
 </table>
 

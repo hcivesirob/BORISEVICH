@@ -5,10 +5,10 @@
 @using BORISEVICH.Domain.Models
 
 <CascadingValue Value="ProductService">
-	<DishesList BookSelected="ShowDetails" />
+	<List BookSelected="ShowDetails" />
 	<Pager />
 </CascadingValue>
-<BookDetails Book="SelectedBook" />
+<Details Book="SelectedBook" />
 
 @code {
 	[Inject] IProductService<Book> ProductService { get; set; }

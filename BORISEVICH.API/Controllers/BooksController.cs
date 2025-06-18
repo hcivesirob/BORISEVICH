@@ -36,8 +36,7 @@ namespace BORISEVICH.API.Controllers
             // Фильтрация по категории загрузка данных категории
             var data = _context.Books
             .Include(d => d.Category)
-            .Where(d => String.IsNullOrEmpty(category)
-            || d.Category.NormalizedName.Equals(category));
+            .Where(d => String.IsNullOrEmpty(category) || d.Category.NormalizedName.Equals(category));
             // Подсчет общего количества страниц
             int totalPages = (int)Math.Ceiling(data.Count() / (double)pageSize);
             if (pageNo > totalPages)
@@ -140,12 +139,13 @@ namespace BORISEVICH.API.Controllers
             return _context.Books.Any(e => e.Id == id);
         }
 
-        [HttpPost("{id}")]
+
+        [HttpPost("{id}/image")]
         public async Task<IActionResult> SaveImage(int id, IFormFile image)
         {
             // Найти объект по Id
-            var dish = await _context.Books.FindAsync(id);
-            if (dish == null)
+            var book = await _context.Books.FindAsync(id);
+            if (book == null)
             {
                 return NotFound();
             }
@@ -168,9 +168,10 @@ namespace BORISEVICH.API.Controllers
             // Url файла изображения
             var url = $"{host}/Images/{fileName}";
             // Сохранить url файла в объекте
-            dish.Image = url;
+            book.Image = url;
             await _context.SaveChangesAsync();
             return Ok();
         }
+
     }
 }

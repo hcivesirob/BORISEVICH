@@ -20,7 +20,7 @@ namespace BORISEVICH.UI.Services
             if (!response.IsSuccessStatusCode)
             {
                 responseData.Success = false;
-                responseData.ErrorMessage = $"Не удалось создать объект: { response.StatusCode}";
+                responseData.ErrorMessage = $"Не удалось создать объект:{ response.StatusCode}";
             return responseData;
             }
             // Если файл изображения передан клиентом
@@ -32,7 +32,7 @@ namespace BORISEVICH.UI.Services
                 var request = new HttpRequestMessage
                 {
                     Method = HttpMethod.Post,
-                    RequestUri = new Uri($"{httpClient.BaseAddress.AbsoluteUri}/{book.Id}")
+                    RequestUri = new Uri($"{httpClient.BaseAddress.AbsoluteUri}{book.Id}/image")
                 };
                 // Создать контент типа multipart form-data
                 var content = new MultipartFormDataContent();
@@ -47,7 +47,7 @@ namespace BORISEVICH.UI.Services
                 if (!response.IsSuccessStatusCode)
                 {
                     responseData.Success = false;
-                    responseData.ErrorMessage = $"Не удалось сохранить изображение: { response.StatusCode}";
+                    responseData.ErrorMessage = $"Не удалось сохранить изображение:{ response.StatusCode}";
                 }
             }
             return responseData;

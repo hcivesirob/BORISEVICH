@@ -18,6 +18,7 @@ namespace BORISEVICH.UI.Tag_helper
         [HtmlAttributeName("category")]
         public string? Category { get; set; }
         // признак страниц администратора
+        [HtmlAttributeName("admin")]
         public bool Admin { get; set; } = false;
         // Номер предыдущей страницы
         int Prev

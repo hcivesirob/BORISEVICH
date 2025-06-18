@@ -32,8 +32,19 @@ productService) : PageModel
             {
                 return Page();
             }
-            await productService.CreateProductAsync(Book, Image);
+            var result = await productService.CreateProductAsync(Book, Image);
+            if (!result.Success)
+            {
+                ModelState.AddModelError(string.Empty, result.ErrorMessage ?? "Ошибка создания книги");
+
+                // Повторно загрузим категории, чтобы форма осталась рабочей
+                var categoryListData = await categoryService.GetCategoryListAsync();
+                ViewData["CategoryId"] = new SelectList(categoryListData.Data, "Id", "Name");
+
+                return Page();
+            }
             return RedirectToPage("./Index");
+
         }
     }
 }
